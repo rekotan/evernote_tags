@@ -3,6 +3,7 @@ class TagsController < EvernoteController
 
   def index
     @tags = list_tags
+    @note_counts = Hash[@tags.map{|tag| [tag.name, note_count(:tag_guid => tag.guid)]}]
   end
 
   def new

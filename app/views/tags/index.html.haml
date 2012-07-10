@@ -8,11 +8,13 @@
     %thead
       %tr
         %th name
+        %th number of notes
         %th
     %tbody
       - @tags.each do |tag|
         %tr
           %td= tag.name
+          %td= @note_counts[tag.name].inspect
           %td
             = link_to 'Edit', tags_edit_path(:guid => tag.guid), :class => 'btn btn-primary'
             = link_to 'Destroy', tags_destroy_path(:guid => tag.guid), :class => 'btn btn-primary',
