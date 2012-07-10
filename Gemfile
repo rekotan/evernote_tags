@@ -18,6 +18,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem "oauth"
 gem "thrift_client", "~> 0.6.3"
+gem "heroku"
 
 # Gems used only for assets and not required
 # in production environments by default.
