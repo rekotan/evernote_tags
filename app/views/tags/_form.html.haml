@@ -1,0 +1,5 @@
+= form_for @tag, :url => @tag.guid ? tags_update_path : tags_create_path,
+  :method => @tag.guid ? :put : :post, :html => {:class => 'well form-inline'} do |f|
+  = f.hidden_field :guid
+  = f.text_field :name
+  = f.button @tag.guid ? 'Update' : 'Create', :class => 'btn btn-primary'

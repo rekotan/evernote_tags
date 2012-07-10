@@ -1,0 +1,19 @@
+%h1 Tags
+.span2.offset10
+  = link_to 'Create', tags_new_path, :class => 'btn btn-primary'
+- if @tags == nil || @tags.empty?
+  no tags
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th name
+        %th
+    %tbody
+      - @tags.each do |tag|
+        %tr
+          %td= tag.name
+          %td
+            = link_to 'Edit', tags_edit_path(:guid => tag.guid), :class => 'btn btn-primary'
+            = link_to 'Destroy', tags_destroy_path(:guid => tag.guid), :class => 'btn btn-primary',
+              :method => :delete, :confirm => 'Are you sure?'

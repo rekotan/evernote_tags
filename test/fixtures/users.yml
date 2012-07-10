@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  access_token: MyString
+  evernote_shard: MyString
+  evernote_id: MyString
+
+two:
+  access_token: MyString
+  evernote_shard: MyString
+  evernote_id: MyString
