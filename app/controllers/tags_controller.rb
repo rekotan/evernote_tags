@@ -2,7 +2,11 @@ class TagsController < EvernoteController
   before_filter :authenticate_user!
 
   def index
-    @tags = list_tags.sort{|a,b| a.name <=> b.name}
+    begin
+      @tags = list_tags.sort{|a,b| a.name <=> b.name}
+    rescue => e
+      redirect_to home_logout_path, :alert => e.message
+    end
   end
 
   def new
