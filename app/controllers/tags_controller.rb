@@ -2,8 +2,7 @@ class TagsController < EvernoteController
   before_filter :authenticate_user!
 
   def index
-    @tags = list_tags
-    @note_counts = Hash[@tags.map{|tag| [tag.name, note_count(:tag_guid => tag.guid)]}]
+    @tags = list_tags.sort{|a,b| a.name <=> b.name}
   end
 
   def new
@@ -14,8 +13,8 @@ class TagsController < EvernoteController
     begin
       create_tag(EvernoteTag.new(params[:evernote_tag]))
       redirect_to tags_index_path, :notice => "Tag is successfully created"
-    rescue Evernote::EDAM::Error::EDAMUserException => e
-      redirect_to tags_index_path, :alert => "UnexpectedError: #{e.inspect}"
+    rescue => e
+      redirect_to tags_index_path, :alert => e.message
     end
   end
 
@@ -24,13 +23,11 @@ class TagsController < EvernoteController
   end
 
   def update
-    tag = get_tag(params[:evernote_tag][:guid])
-    tag.name = params[:evernote_tag][:name]
     begin
-      update_tag(tag)
+      update_tag(params[:evernote_tag][:guid], :name => params[:evernote_tag][:name])
       redirect_to tags_index_path, :notice => "Tag is successfully updated"
-    rescue Evernote::EDAM::Error::EDAMUserException => e
-      redirect_to tags_index_path, :alert => "UnexpectedError: #{e.inspect}"
+    rescue => e
+      redirect_to tags_index_path, :alert => e.message
     end
   end
 
@@ -38,8 +35,8 @@ class TagsController < EvernoteController
     begin
       delete_tag(params[:guid])
       redirect_to tags_index_path, :notice => "Tag is successfully deleted"
-    rescue Evernote::EDAM::Error::EDAMUserException => e
-      redirect_to tags_index_path, :alert => "UnexpectedError: #{e.inspect}"
+    rescue => e
+      redirect_to tags_index_path, :alert => e.message
     end
   end
 

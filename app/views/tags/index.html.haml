@@ -14,8 +14,8 @@
       - @tags.each do |tag|
         %tr
           %td= tag.name
-          %td= @note_counts[tag.name].inspect
+          %td= tag.tag_count
           %td
             = link_to 'Edit', tags_edit_path(:guid => tag.guid), :class => 'btn btn-primary'
-            = link_to 'Destroy', tags_destroy_path(:guid => tag.guid), :class => 'btn btn-primary',
+            = link_to 'Delete', tags_destroy_path(:guid => tag.guid), :class => 'btn btn-danger',
               :method => :delete, :confirm => 'Are you sure?'

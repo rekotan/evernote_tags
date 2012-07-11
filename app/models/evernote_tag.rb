@@ -4,6 +4,7 @@ class EvernoteTag
   extend ActiveModel::Naming
 
   attr_accessor :guid, :name, :parent_guid, :update_sequence_num
+  attr_accessor :tag_count
   validates :name, :presence => true
 
   def initialize(attributes = {})

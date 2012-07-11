@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   private
   def authenticate_user!
-    current_user != nil
+    redirect_to root_path if current_user == nil
   end
 
   def current_user

@@ -2,6 +2,7 @@ EvernoteTags::Application.routes.draw do
   root :to => 'home#index'
   get "home/index"
   get "home/login"
+  get "home/callback"
   get "home/logout"
   get "tags/index"
   get "tags/new"
